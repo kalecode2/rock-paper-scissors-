@@ -5,12 +5,23 @@
   </head>
   <body>
     <script>
+      /*
       function function1() {
         console.log('hello world');
         console.log(2 + 2);
       }
-
       function1();
+      */
+
+      // this is a function helping to calculate taxe.
+      function calculateTaxe(cost, taxPercent = 0.1) {
+        console.log(cost * taxPercent);
+      }
+
+      calculateTaxe(2000, 0.2);
+      calculateTaxe(5000);
+      calculateTaxe(8000);
+
     </script>
   </body>
 </html>
