@@ -8,22 +8,44 @@
   <body>
     <p>Rock Paper Scissors</p>
 
-    <!-rock-->
-    <button onclick="
-      playGame('rock');
-    ">Rock</button>
+    <button onclick="playGame('rock');">
+      Rock
+    </button>
 
-    <!-paper-->
-    <button onclick="
-      playGame('paper');
-    ">Paper</button>
+    <button onclick="playGame('paper');">
+      Paper
+    </button>
 
-    <!-scissors-->
+    <button onclick="playGame('scissors');">
+      Scissors
+    </button>
+
     <button onclick="
-      playGame('scissors'); 
-    ">Scissors</button>
+      scores.losses = 0;
+      scores.wins = 0;
+      scores.ties = 0;
+      localStorage.removeItem('scores');
+    ">Reset Scores</button>
 
     <script>
+
+      let scores = JSON.parse(localStorage.getItem('scores')) || {
+          losses: 0,
+          wins: 0,
+          ties: 0
+      };
+
+      /*
+      if (!scores) {
+          scores = {
+              losses: 0,
+              wins: 0,
+              ties: 0
+          };
+      }
+      */
+
+
       function playGame(playerMove) {
         const computerMove = pickComputerMove();
 
@@ -42,14 +64,14 @@
           if (computerMove === 'rock') {
             result = 'You win.';
           } else if (computerMove === 'paper') {
-            result = 'Tie.';
+            result = 'You Tie.';
           } else if (computerMove === 'scissors') {
             result = 'You Lose.';
           }
           
         } else if(playerMove === 'rock') {
           if (computerMove === 'rock') {
-            result = 'Tie.';
+            result = 'You Tie.';
           } else if (computerMove === 'paper') { 
             result = 'You Lose.';
           } else if (computerMove === 'scissors') {
@@ -57,7 +79,19 @@
           }
         }
 
-        alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}`);
+        if (result === 'You Win.') {
+          scores.wins ++;
+        } else if (result === 'You Lose.') {
+          scores.losses ++;
+        } else if (result === 'You Tie.') {
+          scores.ties ++;
+        }
+
+        localStorage.setItem('scores', JSON.stringify(scores));
+
+        alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}
+        \nWins: ${scores.wins}, Losses: ${scores.losses}, Ties: ${scores.ties}`);
+
       }
       
       function pickComputerMove() {
@@ -73,7 +107,6 @@
         }
         return computerMove;
       }
-
     </script>
   </body>
 </html>

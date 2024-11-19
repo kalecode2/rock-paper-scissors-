@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Objects</title>
+  </head>
+  <body>
+    <script>
+
+      const product = {
+        name: 'socks',
+        price: 1090
+      };
+      console.log(product);
+      console.log(typeof product);
+      console.log(` The product name is ${product.name}`); 
+      console.log(`The product price is ${product.price}`);
+
+      product.name = ' cotton socks';
+      console.log(product);
+
+      product.newProperty = true;
+      console.log(product);
+
+      delete product.newProperty;
+      console.log(product);
+
+
+      const product2 = {
+        name: 'Shirt',
+        ['delivery-time']: '1 day',
+        ratings: {
+            stars: 4.5,
+            count: 87
+        },
+        fun: function function1 () {
+            console.log('Function inside object');
+        }
+      };
+
+      console.log(product2);
+      console.log(product2.name);
+      console.log(product2['name']);
+      console.log(product2['delivery-time']);
+
+      console.log(product2['ratings']);
+      console.log(product2['ratings']['stars']);
+      console.log(product2['ratings']['count']);
+
+      product2.fun();
+      console.log(typeof console);
+      console.log(typeof console.log);
+
+      // let's convert the product2 into JSON.
+      console.log(JSON.stringify(product2));
+      // let's convert the product2 from JSON.
+      const jsonString = JSON.stringify(product2);
+      console.log(JSON.parse(jsonString));
+
+
+
+      console.log('hello world'.length);
+      console.log('hello'.toUpperCase());
+
+      const object1 = {
+        message: 'Hello World'
+      };
+      const object2 = object1;
+
+      object1.message = 'Good morning!';
+      console.log(object1);
+      console.log(object2);  // as object2  is equal to object1.
+
+      const object3 = {
+        message: 'Good morning!'
+      }
+      console.log(object3 === object1);  // false because not same reference.
+      console.log(object2 ===object1);  // true as they have same reference.
+      console.log(object3 === object2);   // it throws also false
+
+    </script>
+  </body>
+</html> 
