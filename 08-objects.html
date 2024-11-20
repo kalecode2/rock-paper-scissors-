@@ -24,7 +24,6 @@
       delete product.newProperty;
       console.log(product);
 
-
       const product2 = {
         name: 'Shirt',
         ['delivery-time']: '1 day',
@@ -56,8 +55,6 @@
       const jsonString = JSON.stringify(product2);
       console.log(JSON.parse(jsonString));
 
-
-
       console.log('hello world'.length);
       console.log('hello'.toUpperCase());
 
@@ -72,11 +69,34 @@
 
       const object3 = {
         message: 'Good morning!'
-      }
+      };
       console.log(object3 === object1);  // false because not same reference.
       console.log(object2 ===object1);  // true as they have same reference.
-      console.log(object3 === object2);   // it throws also false
+      console.log(object3 === object2);  // it throws also false
 
+      const object4 = {
+        message: 'Good job buddy!',
+        price: 799
+      };
+      // const message = object4.message;
+      const {message, price} = object4;
+      console.log(message);
+      console.log(price);
+
+      const object5 = {
+        // message: message,
+        message,
+        /*
+        method: function function1() {
+          console.log('method');
+        },
+        */
+        method() {
+          console.log('method');
+        }
+      };
+      console.log(object5);
+      object5.method();
     </script>
   </body>
 </html> 
