@@ -4,17 +4,28 @@ let scores = JSON.parse(localStorage.getItem('scores')) || {
 	ties: 0
 };
 
-// call function.
-updateScoresElement();
-/*
-if (!scores) {
-  scores = {
-    losses: 0,
-    wins: 0;
-    ties: 0;
-  };
+let isAutoPlay = false;
+let intervalId;
+
+const autoPlay = () => {
+
+};
+
+function autoPlay() {
+	if (!isAutoPlay) {
+		intervalId = setInterval(()=> {
+			const playerMove = pickComputerMove();
+			playGame(playerMove);
+		}, 1000);
+		isAutoPlay = true;
+
+	} else {
+		clearInterval(intervalId);
+		isAutoPlay = false;
+	}
+
 }
-*/
+
 function playGame(playerMove) {
 	const computerMove = pickComputerMove();
 
@@ -91,3 +102,4 @@ function pickComputerMove() {
 	}
 	return computerMove;
 }
+
